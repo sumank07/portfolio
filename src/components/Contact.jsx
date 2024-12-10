@@ -1,74 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Contact() {
-  const [result, setResult] = useState("");
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    setResult("Sending...");
-
-    const formData = new FormData(event.target);
-    formData.append("access_key", "8f807c9c-6d30-4f70-8a5c-68540e23c677");
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setResult("Form Submitted Successfully");
-        event.target.reset();
-      } else {
-        setResult(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      setResult("An error occurred while submitting the form.");
-      console.error(error);
-    }
-  };
-
+const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-teal-100">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
-        <form onSubmit={onSubmit} className="space-y-4 max-w-md mx-auto">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            className="w-full p-3 border rounded-md"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="w-full p-3 border rounded-md"
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            className="w-full p-3 border rounded-md"
-            rows="5"
-            required
-          ></textarea>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600"
-          >
-            Send
-          </button>
-          {result && (
-            <p className="mt-4 text-sm font-medium text-gray-700">{result}</p>
-          )}
-        </form>
+    <div className="bg-black text-white py-20" id="contact">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12">
+          Contact Me
+        </h2>
+        <div className="flex flex-col items-center">
+          <form className="w-full max-w-md space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-center mb-2">
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
+                placeholder="Enter Your Name"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-center mb-2">
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
+                placeholder="Enter Your Email ID"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-center mb-2">
+              </label>
+              <textarea
+                id="message"
+                className="w-full p-3 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
+                rows="5"
+                placeholder="Enter Your Message"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-green-400 text-white w-full sm:w-auto transform transition-transform duration-300 hover:scale-105 px-8 py-3 rounded-full mx-auto block"
+            >
+              Send Me
+            </button>
+          </form>
+        </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
 
 export default Contact;

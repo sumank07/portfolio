@@ -3,70 +3,60 @@ import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt } from "react-icons/fa";
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-green-100">
+    <section id="skills" className="py-40 bg-black text-white">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">Skills</h2>
-
+        <h2 className="text-4xl font-bold mb-6">My Skills</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-items-center">
-      
-          <div className="bg-pink-400 flex flex-col items-center border-2 border-gray-400 p-6 transition-all duration-300 hover:scale-105 rounded-lg">
-            <FaHtml5 className="text-6xl text-orange-600" aria-label="HTML5" />
-            <p className="mt-4 text-lg font-medium">HTML</p>
-            <p className="text-sm text-center mt-2">
-              HTML is the standard language used to create and structure content on the web. It defines the structure of web pages using elements like headings, paragraphs, links, images, and more.
-            </p>
-            <a
-              href="https://www.w3schools.com/html/"
-              className="btn btn-primary bg-orange-600 text-white rounded mt-4 px-4 py-2 hover:bg-orange-700"
+          {[
+            {
+              icon: <FaHtml5 className="text-6xl sm:text-5xl md:text-6xl text-orange-600" aria-label="HTML5" />,
+              label: "HTML",
+              link: "https://www.w3schools.com/html/",
+              linkText: "Read More",
+              bgColor: "bg-orange-600",
+              hoverColor: "hover:bg-orange-700",
+            },
+            {
+              icon: <FaCss3Alt className="text-6xl sm:text-5xl md:text-6xl text-blue-600" aria-label="CSS3" />,
+              label: "CSS",
+              link: "https://www.w3schools.com/css/",
+              linkText: "Read More",
+              bgColor: "bg-blue-600",
+              hoverColor: "hover:bg-blue-700",
+            },
+            {
+              icon: <FaReact className="text-6xl sm:text-5xl md:text-6xl text-blue-400" aria-label="React" />,
+              label: "React",
+              link: "https://react.dev/",
+              linkText: "Read More",
+              bgColor: "bg-blue-400",
+              hoverColor: "hover:bg-blue-500",
+            },
+            {
+              icon: <FaGitAlt className="text-6xl sm:text-5xl md:text-6xl text-orange-500" aria-label="Git" />,
+              label: "Git",
+              link: "https://git-scm.com/",
+              linkText: "Read More",
+              bgColor: "bg-orange-500",
+              hoverColor: "hover:bg-orange-600",
+            },
+          ].map((skill, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 flex flex-col items-center border-2 border-gray-400 p-6 transition-transform duration-300 hover:scale-105 rounded-lg"
             >
-              Read More
-            </a>
-          </div>
-
-         
-          <div className="bg-green-400 flex flex-col items-center border-2 border-gray-400 p-6 transition-all duration-300 hover:scale-105 rounded-lg">
-            <FaCss3Alt className="text-6xl text-blue-600" aria-label="CSS3" />
-            <p className="mt-4 text-lg font-medium">CSS</p>
-            <p className="text-sm text-center mt-2">
-              CSS is used for styling HTML elements on a web page. It controls the layout, colors, fonts, and overall design of the page, making it responsive and attractive.
-            </p>
-            <a
-              href="https://www.w3schools.com/css/"
-              className="btn btn-primary bg-blue-600 text-white rounded mt-4 px-4 py-2 hover:bg-blue-700"
-            >
-              Read More
-            </a>
-          </div>
-
-         
-          <div className="bg-red-400 flex flex-col items-center border-2 border-gray-400 p-6 transition-all duration-300 hover:scale-105 rounded-lg">
-            <FaReact className="text-6xl text-blue-400" aria-label="React" />
-            <p className="mt-4 text-lg font-medium">React</p>
-            <p className="text-sm text-center mt-2">
-              React is a JavaScript library for building user interfaces, particularly single-page applications (SPAs). It enables the creation of reusable UI components and manages the view layer.
-            </p>
-            <a
-              href="https://react.dev/"
-              className="btn btn-primary bg-blue-400 text-white rounded mt-4 px-4 py-2 hover:bg-blue-500"
-            >
-              Read More
-            </a>
-          </div>
-
-         
-          <div className="bg-gray-400 flex flex-col items-center border-2 border-gray-400 p-6 transition-all duration-300 hover:scale-105 rounded-lg">
-            <FaGitAlt className="text-6xl text-orange-500" aria-label="Git" />
-            <p className="mt-4 text-lg font-medium">Git</p>
-            <p className="text-sm text-center mt-2">
-              Git is a version control system that tracks changes to files and allows multiple developers to collaborate on projects. It manages code versions and facilitates branching and merging.
-            </p>
-            <a
-              href="https://git-scm.com/"
-              className="btn btn-primary bg-orange-500 text-white rounded mt-4 px-4 py-2 hover:bg-orange-600"
-            >
-              Read More
-            </a>
-          </div>
+              {skill.icon}
+              <p className="mt-4 text-lg font-medium">{skill.label}</p>
+              <a
+                href={skill.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-white rounded mt-4 px-4 py-2 ${skill.bgColor} ${skill.hoverColor} focus:outline-none focus:ring-2 focus:ring-${skill.bgColor.split('-')[1]}-300`}
+              >
+                {skill.linkText}
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
